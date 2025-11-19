@@ -40,6 +40,13 @@ If this command works, you’re good.
 
 ---
 
+## ⚠️ Other dependencies
+
+- **curl** (for HTTP requests)
+- **jq** (for JSON parsing)
+
+---
+
 ## 📁 Project structure
 
 ```

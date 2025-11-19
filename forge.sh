@@ -15,6 +15,25 @@ else
   exit 1
 fi
 
+# --- Dependency checks ---
+require_bin() {
+  local binName="$1"
+  local extraMsg="${2:-}"
+
+  if ! command -v "$binName" >/dev/null 2>&1; then
+    echo "Error: '$binName' is required but was not found in \$PATH." >&2
+    if [ -n "$extraMsg" ]; then
+      echo "$extraMsg" >&2
+    fi
+    exit 1
+  fi
+}
+
+# --- Check dependencies ---
+require_bin "curl"
+require_bin "jq"
+require_bin "navi" "See installation instructions: https://github.com/denisidoro/navi#installation"
+
 # --- Call navi to pick a prompt ---
 export NAVI_PATH="$NAVI_PROMPTS_PATH"
 filled_prompt="$(navi --print || true)"
